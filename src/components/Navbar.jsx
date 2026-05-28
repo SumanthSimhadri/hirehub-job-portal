@@ -34,39 +34,39 @@ function Navbar({ setActiveSection }) {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+        <div className="hidden md:flex items-center gap-5 lg:gap-6">
 
           <button
             onClick={() => setActiveSection("home")}
-            className="font-semibold text-gray-700 hover:text-blue-600 transition"
+            className="text-[13px] font-medium text-gray-700 hover:text-blue-600 transition"
           >
             Home
           </button>
 
           <button
             onClick={() => setActiveSection("jobs")}
-            className="font-semibold text-gray-700 hover:text-blue-600 transition"
+            className="text-[13px] font-medium text-gray-700 hover:text-blue-600 transition"
           >
             Jobs
           </button>
 
           <button
             onClick={() => setActiveSection("companies")}
-            className="font-semibold text-gray-700 hover:text-blue-600 transition"
+            className="text-[13px] font-medium text-gray-700 hover:text-blue-600 transition"
           >
             Companies
           </button>
 
           <button
             onClick={() => setActiveSection("about")}
-            className="font-semibold text-gray-700 hover:text-blue-600 transition"
+            className="text-[13px] font-medium text-gray-700 hover:text-blue-600 transition"
           >
             About
           </button>
 
           <button
             onClick={() => setActiveSection("contact")}
-            className="font-semibold text-gray-700 hover:text-blue-600 transition"
+            className="text-[13px] font-medium text-gray-700 hover:text-blue-600 transition"
           >
             Contact
           </button>
@@ -74,13 +74,13 @@ function Navbar({ setActiveSection }) {
         </div>
 
         {/* Right Buttons */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2">
 
           <Link to="/dashboard">
 
-            <button className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-xl font-medium transition">
+            <button className="bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-xl text-[13px] font-medium transition">
 
-              Dashboard
+              Profile
 
             </button>
 
@@ -88,7 +88,7 @@ function Navbar({ setActiveSection }) {
 
           <button
             onClick={handleLogout}
-            className="bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2 rounded-xl font-medium transition"
+            className="bg-red-100 hover:bg-red-200 text-red-600 px-3 py-1.5 rounded-xl text-[13px] font-medium transition"
           >
 
             Logout
@@ -104,8 +104,8 @@ function Navbar({ setActiveSection }) {
         >
 
           {menuOpen
-            ? <X size={30} />
-            : <Menu size={30} />}
+            ? <X size={24} />
+            : <Menu size={24} />}
 
         </button>
 
@@ -121,7 +121,7 @@ function Navbar({ setActiveSection }) {
               setActiveSection("home");
               setMenuOpen(false);
             }}
-            className="block w-full text-left font-semibold text-gray-700 hover:text-blue-600"
+            className="block w-full text-left text-[13px] font-medium text-gray-700 hover:text-blue-600"
           >
 
             Home
@@ -133,7 +133,7 @@ function Navbar({ setActiveSection }) {
               setActiveSection("jobs");
               setMenuOpen(false);
             }}
-            className="block w-full text-left font-semibold text-gray-700 hover:text-blue-600"
+            className="block w-full text-left text-[13px] font-medium text-gray-700 hover:text-blue-600"
           >
 
             Jobs
@@ -145,7 +145,7 @@ function Navbar({ setActiveSection }) {
               setActiveSection("companies");
               setMenuOpen(false);
             }}
-            className="block w-full text-left font-semibold text-gray-700 hover:text-blue-600"
+            className="block w-full text-left text-[13px] font-medium text-gray-700 hover:text-blue-600"
           >
 
             Companies
@@ -157,7 +157,7 @@ function Navbar({ setActiveSection }) {
               setActiveSection("about");
               setMenuOpen(false);
             }}
-            className="block w-full text-left font-semibold text-gray-700 hover:text-blue-600"
+            className="block w-full text-left text-[13px] font-medium text-gray-700 hover:text-blue-600"
           >
 
             About
@@ -169,7 +169,7 @@ function Navbar({ setActiveSection }) {
               setActiveSection("contact");
               setMenuOpen(false);
             }}
-            className="block w-full text-left font-semibold text-gray-700 hover:text-blue-600"
+            className="block w-full text-left text-[13px] font-medium text-gray-700 hover:text-blue-600"
           >
 
             Contact
@@ -178,9 +178,9 @@ function Navbar({ setActiveSection }) {
 
           <Link to="/dashboard">
 
-            <button className="w-full bg-gray-100 hover:bg-gray-200 py-3 rounded-xl font-medium transition">
+            <button className="w-full bg-gray-100 hover:bg-gray-200 py-2.5 rounded-xl text-[13px] font-medium transition">
 
-              Dashboard
+              Profile
 
             </button>
 
@@ -188,7 +188,7 @@ function Navbar({ setActiveSection }) {
 
           <button
             onClick={handleLogout}
-            className="w-full bg-red-100 hover:bg-red-200 text-red-600 py-3 rounded-xl font-medium transition"
+            className="w-full bg-red-100 hover:bg-red-200 text-red-600 py-2.5 rounded-xl text-[13px] font-medium transition"
           >
 
             Logout

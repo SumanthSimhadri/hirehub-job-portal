@@ -24,11 +24,11 @@ function Login() {
         </h1>
 
         {/* Right Buttons */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
 
           <Link to="/register">
 
-            <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-blue-50 transition">
+            <button className="border border-blue-600 text-blue-600 px-4 py-1.5 rounded-full text-[13px] font-medium hover:bg-blue-50 transition">
 
               Join Now
 
@@ -36,7 +36,7 @@ function Login() {
 
           </Link>
 
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-full text-[13px] font-medium transition">
 
             Sign In
 
@@ -53,31 +53,39 @@ function Login() {
         <div className="flex-1 max-w-2xl">
 
           {/* Heading */}
-          <h1 className="text-4xl md:text-6xl font-light text-gray-800 leading-tight mb-10">
+          <h1 className="text-4xl md:text-6xl font-light text-gray-800 leading-tight mb-8">
 
             Explore jobs and grow your professional network
 
           </h1>
 
-          {/* Inputs */}
-          <div className="space-y-5 max-w-xl">
+          {/* Form */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleLogin();
+            }}
+            className="space-y-4 max-w-xl"
+          >
 
+            {/* Email */}
             <input
               type="email"
               placeholder="Email address"
-              className="w-full border border-gray-300 p-4 rounded-2xl text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 p-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
+            {/* Password */}
             <input
               type="password"
               placeholder="Password"
-              className="w-full border border-gray-300 p-4 rounded-2xl text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 p-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             {/* Login Button */}
             <button
-              onClick={handleLogin}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-full text-lg font-semibold transition"
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-full text-[13px] font-medium transition"
             >
 
               Sign In
@@ -85,29 +93,35 @@ function Login() {
             </button>
 
             {/* Google Button */}
-            <button className="w-full border border-gray-400 py-4 rounded-full text-lg font-medium hover:bg-gray-50 transition">
+            <button
+              type="button"
+              className="w-full border border-gray-400 py-2.5 rounded-full text-[13px] font-medium hover:bg-gray-50 transition"
+            >
 
               Continue with Google
 
             </button>
 
             {/* Microsoft Button */}
-            <button className="w-full border border-gray-400 py-4 rounded-full text-lg font-medium hover:bg-gray-50 transition">
+            <button
+              type="button"
+              className="w-full border border-gray-400 py-2.5 rounded-full text-[13px] font-medium hover:bg-gray-50 transition"
+            >
 
               Continue with Microsoft
 
             </button>
 
-          </div>
+          </form>
 
           {/* Register */}
-          <p className="mt-10 text-gray-600 text-lg">
+          <p className="mt-8 text-gray-600 text-sm">
 
             New to HireHub?{" "}
 
             <Link
               to="/register"
-              className="text-blue-600 font-semibold hover:underline"
+              className="text-blue-600 font-medium hover:underline"
             >
 
               Join now
@@ -123,47 +137,47 @@ function Login() {
 
           <div className="w-full max-w-2xl h-[500px] rounded-[40px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-2xl flex items-center justify-center p-10">
 
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-10 text-white w-full max-w-md">
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-8 text-white w-full max-w-md">
 
-              <h2 className="text-4xl font-bold mb-8">
+              <h2 className="text-3xl font-bold mb-6">
 
                 🚀 Trending Skills
 
               </h2>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
 
-                <div className="bg-white/20 rounded-2xl py-4 text-center font-semibold">
+                <div className="bg-white/20 rounded-2xl py-3 text-center text-sm font-medium">
 
                   React
 
                 </div>
 
-                <div className="bg-white/20 rounded-2xl py-4 text-center font-semibold">
+                <div className="bg-white/20 rounded-2xl py-3 text-center text-sm font-medium">
 
                   AI/ML
 
                 </div>
 
-                <div className="bg-white/20 rounded-2xl py-4 text-center font-semibold">
+                <div className="bg-white/20 rounded-2xl py-3 text-center text-sm font-medium">
 
                   Python
 
                 </div>
 
-                <div className="bg-white/20 rounded-2xl py-4 text-center font-semibold">
+                <div className="bg-white/20 rounded-2xl py-3 text-center text-sm font-medium">
 
                   AWS
 
                 </div>
 
-                <div className="bg-white/20 rounded-2xl py-4 text-center font-semibold">
+                <div className="bg-white/20 rounded-2xl py-3 text-center text-sm font-medium">
 
                   UI/UX
 
                 </div>
 
-                <div className="bg-white/20 rounded-2xl py-4 text-center font-semibold">
+                <div className="bg-white/20 rounded-2xl py-3 text-center text-sm font-medium">
 
                   Cloud
 

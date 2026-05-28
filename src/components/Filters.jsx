@@ -363,21 +363,48 @@ function Filters({
 
         </div>
 
-        {/* Apply Button */}
-        <button
-          onClick={() => {
+        {/* Filter Buttons */}
+        <div className="flex gap-3">
 
-            applyFilters();
+          {/* Clear Filters */}
+          <button
+            onClick={() => {
 
-            toast.success(
-              "Filters Applied"
-            );
+              setFilters({
+                title: "",
+                location: "",
+                experience: "",
+                type: "",
+                skills: [],
+              });
 
-          }}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-semibold transition"
-        >
-          Apply Filters
-        </button>
+              toast.success(
+                "Filters Cleared"
+              );
+
+            }}
+            className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-2xl font-semibold transition"
+          >
+            Clear Filters
+          </button>
+
+          {/* Apply Button */}
+          <button
+            onClick={() => {
+
+              applyFilters();
+
+              toast.success(
+                "Filters Applied"
+              );
+
+            }}
+            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-semibold transition"
+          >
+            Apply Filters
+          </button>
+
+        </div>
 
       </div>
 

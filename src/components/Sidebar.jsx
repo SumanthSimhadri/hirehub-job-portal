@@ -40,19 +40,19 @@ function Sidebar() {
 
           <Link to="/dashboard">
             <button className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl font-semibold bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-              📊 Dashboard
+              🧩 Dashboard
             </button>
           </Link>
 
           <Link to="/applications">
             <button className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-gray-100 transition">
-              💼 Applications
+              📄 Applications
             </button>
           </Link>
 
           <Link to="/saved-jobs">
             <button className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-gray-100 transition">
-              ❤️ Saved Jobs
+              🔖 Saved Jobs
             </button>
           </Link>
 
@@ -64,7 +64,7 @@ function Sidebar() {
 
           <Link to="/resume">
             <button className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-gray-100 transition">
-              📄 Resume
+              📑 Resume
             </button>
           </Link>
 
