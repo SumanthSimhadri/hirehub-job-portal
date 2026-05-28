@@ -27,7 +27,7 @@ function Home() {
       logo: google,
       role: "Frontend Developer",
       location: "Hyderabad",
-      salary: "₹10 LPA",
+      salary: "10 LPA",
       experience: "2 Years",
       type: "Full Time Job",
       skills: ["React", "JavaScript"],
@@ -39,7 +39,7 @@ function Home() {
       logo: amazon,
       role: "React Developer",
       location: "Bangalore",
-      salary: "₹8 LPA",
+      salary: "8 LPA",
       experience: "1 Year",
       type: "Full Time Job",
       skills: ["React", "Node.js"],
@@ -51,7 +51,7 @@ function Home() {
       logo: microsoft,
       role: "UI/UX Designer",
       location: "Remote",
-      salary: "₹7 LPA",
+      salary: "7 LPA",
       experience: "Fresher",
       type: "Internship",
       skills: ["Figma", "UI Design"],
@@ -63,7 +63,7 @@ function Home() {
       logo: infosys,
       role: "Python Developer",
       location: "Pune",
-      salary: "₹6 LPA",
+      salary: "6 LPA",
       experience: "2 Years",
       type: "Full Time Job",
       skills: ["Python", "SQL"],
@@ -75,7 +75,7 @@ function Home() {
       logo: tcs,
       role: "Cloud Engineer",
       location: "Chennai",
-      salary: "₹9 LPA",
+      salary: "9 LPA",
       experience: "3 Years",
       type: "Remote Job",
       skills: ["AWS", "Docker"],
@@ -87,7 +87,7 @@ function Home() {
       logo: wipro,
       role: "Data Analyst",
       location: "Hyderabad",
-      salary: "₹5 LPA",
+      salary: "5 LPA",
       experience: "Fresher",
       type: "Internship",
       skills: ["Power BI", "Excel"],
@@ -129,11 +129,18 @@ function Home() {
         filters.type === "" ||
         job.type === filters.type;
 
+      const skillsMatch =
+        filters.skills.length === 0 ||
+        filters.skills.every((skill) =>
+          job.skills.includes(skill)
+        );
+
       return (
         titleMatch &&
         locationMatch &&
         experienceMatch &&
-        typeMatch
+        typeMatch &&
+        skillsMatch
       );
 
     });
@@ -143,12 +150,13 @@ function Home() {
   };
 
   return (
+
     <div className="min-h-screen bg-gray-100">
 
       {/* Navbar */}
       <Navbar setActiveSection={setActiveSection} />
 
-      <div className="px-6 md:px-12 py-8">
+      <div className="px-4 sm:px-6 md:px-12 py-6 md:py-8">
 
         {/* HOME */}
         {activeSection === "home" && (
@@ -156,7 +164,7 @@ function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="h-[85vh] bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-3xl p-10 text-white shadow-2xl flex items-center"
+            className="min-h-[85vh] bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-3xl p-6 md:p-10 text-white shadow-2xl flex items-center"
           >
 
             <div className="grid lg:grid-cols-2 gap-10 items-center w-full">
@@ -164,7 +172,7 @@ function Home() {
               {/* Left */}
               <div>
 
-                <h1 className="text-6xl font-bold leading-tight mb-8">
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8">
 
                   Find Your <br />
 
@@ -174,7 +182,7 @@ function Home() {
 
                 </h1>
 
-                <p className="text-xl text-blue-100 leading-9 mb-10">
+                <p className="text-lg md:text-xl text-blue-100 leading-8 md:leading-9 mb-10">
 
                   Discover thousands of internships,
                   remote jobs, and career opportunities
@@ -241,14 +249,14 @@ function Home() {
         {/* JOBS */}
         {activeSection === "jobs" && (
 
-          <div className="bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 rounded-3xl p-6 md:p-8 shadow-xl">
+          <div className="bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 rounded-3xl p-3 sm:p-5 md:p-8 shadow-xl">
 
-            <div className="grid lg:grid-cols-4 gap-8">
+            <div className="flex flex-col lg:grid lg:grid-cols-4 gap-6 lg:gap-8">
 
               {/* Filters */}
               <div className="lg:col-span-1">
 
-                <div className="sticky top-24 max-h-[90vh] overflow-y-auto pr-2">
+                <div className="lg:sticky lg:top-24">
 
                   <Filters
                     filters={filters}
@@ -261,8 +269,26 @@ function Home() {
               </div>
 
               {/* Jobs */}
-              <div className="lg:col-span-3 mt-10 lg:mt-0">
+              <div className="lg:col-span-3">
 
+                {/* Heading */}
+                <div className="mb-6 md:mb-8">
+
+                  <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-2">
+
+                    Recommended for You
+
+                  </h1>
+
+                  <p className="text-gray-600 text-sm md:text-lg">
+
+                    Matched jobs based on your selected filters
+
+                  </p>
+
+                </div>
+
+                {/* Recommended Jobs */}
                 <RecommendedJobs jobs={filteredJobs} />
 
               </div>
@@ -296,7 +322,7 @@ function Home() {
 
             <div className="w-full text-center">
 
-              <h1 className="text-6xl font-bold text-gray-800 mb-8">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-8">
 
                 About <span className="text-blue-600">
                   HireHub
@@ -304,13 +330,12 @@ function Home() {
 
               </h1>
 
-              <p className="text-xl text-gray-500 max-w-4xl mx-auto leading-10 mb-14">
+              <p className="text-lg md:text-xl text-gray-500 max-w-4xl mx-auto leading-8 md:leading-10 mb-14">
 
                 HireHub is a modern AI-powered job portal helping students and professionals discover internships and jobs from top companies.
 
               </p>
 
-              {/* Cards */}
               <div className="grid md:grid-cols-3 gap-8">
 
                 {[
@@ -340,16 +365,16 @@ function Home() {
                   <motion.div
                     key={index}
                     whileHover={{ scale: 1.05 }}
-                    className="bg-white p-10 rounded-3xl shadow-xl"
+                    className="bg-white p-8 md:p-10 rounded-3xl shadow-xl"
                   >
 
-                    <div className="text-6xl mb-6 text-blue-600">
+                    <div className="text-5xl md:text-6xl mb-6 text-blue-600">
 
                       {item.icon}
 
                     </div>
 
-                    <h2 className="text-3xl font-bold text-gray-800 mb-5">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-5">
 
                       {item.title}
 
@@ -378,9 +403,9 @@ function Home() {
 
           <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 rounded-3xl p-6 md:p-10 shadow-xl">
 
-            <div className="bg-white p-10 rounded-3xl shadow-2xl max-w-2xl w-full">
+            <div className="bg-white p-6 md:p-10 rounded-3xl shadow-2xl max-w-2xl w-full">
 
-              <h1 className="text-5xl font-bold text-center text-gray-800 mb-10">
+              <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-10">
 
                 Contact Us
 
@@ -426,6 +451,7 @@ function Home() {
       <Footer />
 
     </div>
+
   );
 }
 
