@@ -177,11 +177,11 @@ function Navbar({ setActiveSection }) {
           </button>
 
           {/* Profile + Logout */}
-          <div className="space-y-3 pt-2">
+          <div className="flex flex-col gap-4 pt-4">
 
             <Link to="/dashboard">
 
-              <button className="w-full bg-gray-100 hover:bg-gray-200 py-2.5 rounded-xl text-[13px] font-medium transition">
+              <button className="w-full bg-gray-100 hover:bg-gray-200 py-3 rounded-xl text-[13px] font-medium transition">
 
                 Profile
 
@@ -191,7 +191,7 @@ function Navbar({ setActiveSection }) {
 
             <button
               onClick={handleLogout}
-              className="w-full bg-red-100 hover:bg-red-200 text-red-600 py-2.5 rounded-xl text-[13px] font-medium transition"
+              className="w-full bg-red-100 hover:bg-red-200 text-red-600 py-3 rounded-xl text-[13px] font-medium transition"
             >
 
               Logout

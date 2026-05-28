@@ -277,7 +277,7 @@ function Home() {
             </div>
 
             {/* Jobs */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 mt-10 lg:mt-0">
 
               <RecommendedJobs
                 jobs={filteredJobs}
