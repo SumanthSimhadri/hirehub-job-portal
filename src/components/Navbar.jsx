@@ -323,7 +323,7 @@ function Navbar({ setActiveSection }) {
             </button>
 
             {/* Mobile Profile */}
-            <div className="border-t pt-5 space-y-4">
+            <div className="border-t pt-8 mt-6 flex flex-col gap-5">
 
               <Link to="/dashboard">
 
