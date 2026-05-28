@@ -54,7 +54,7 @@ function RecommendedJobs({ jobs }) {
                 <img
                   src={job.logo}
                   alt={job.company}
-                  className="w-16 h-16 rounded-2xl object-cover shadow"
+                  className="w-16 h-16 object-contain bg-white p-2 rounded-2xl shadow-md border border-gray-100"
                 />
 
                 <div>
@@ -91,7 +91,7 @@ function RecommendedJobs({ jobs }) {
               </p>
 
               <p className="text-base md:text-lg font-semibold text-green-600">
-                ₹ {job.salary}
+                {job.salary}
               </p>
 
               <p className="text-base md:text-lg">
@@ -171,7 +171,7 @@ function RecommendedJobs({ jobs }) {
                   <img
                     src={job.logo}
                     alt={job.company}
-                    className="w-16 h-16 rounded-2xl"
+                    className="w-16 h-16 object-contain bg-white p-2 rounded-2xl shadow-md border border-gray-100"
                   />
 
                   <div>
@@ -211,7 +211,7 @@ function RecommendedJobs({ jobs }) {
                       Salary:
                     </span>{" "}
 
-                    ₹ {job.salary}
+                    {job.salary}
 
                   </p>
 
