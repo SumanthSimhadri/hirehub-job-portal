@@ -1,97 +1,42 @@
-import { useMemo, useState } from "react";
-import toast from "react-hot-toast";
+function Filters({ filters, setFilters, applyFilters }) {
 
-function Filters({
-  filters,
-  setFilters,
-  applyFilters,
-}) {
-
-  const [titleOpen, setTitleOpen] = useState(false);
-  const [locationOpen, setLocationOpen] = useState(false);
-
-  const skills = [
+  const skillsList = [
     "React",
     "JavaScript",
-    "TypeScript",
     "Python",
-    "Java",
     "SQL",
-    "Node.js",
-    "MongoDB",
     "AWS",
     "Docker",
     "UI/UX",
-    "Figma",
-    "Machine Learning",
-    "Data Analysis",
-    "Tailwind CSS",
-    "Power BI",
+    "Node.js",
   ];
 
   const jobTitles = [
     "Frontend Developer",
-    "Backend Developer",
-    "Full Stack Developer",
     "React Developer",
     "Python Developer",
-    "Java Developer",
+    "Cloud Engineer",
     "UI/UX Designer",
     "Data Analyst",
-    "Cloud Engineer",
-    "AI Engineer",
   ];
 
-  const locations = [
+  const locationsList = [
     "Hyderabad",
     "Bangalore",
     "Chennai",
     "Pune",
     "Mumbai",
-    "Delhi",
-    "Noida",
     "Remote",
-    "Kolkata",
-    "Visakhapatnam",
   ];
 
-  const filteredTitles = useMemo(() => {
+  const handleSkillChange = (skill) => {
 
-    const q = (filters.title || "")
-      .toLowerCase();
-
-    if (!q) return jobTitles;
-
-    return jobTitles.filter((title) =>
-      title.toLowerCase().includes(q)
-    );
-
-  }, [filters.title]);
-
-  const filteredLocations = useMemo(() => {
-
-    const q = (filters.location || "")
-      .toLowerCase();
-
-    if (!q) return locations;
-
-    return locations.filter((location) =>
-      location.toLowerCase().includes(q)
-    );
-
-  }, [filters.location]);
-
-  const toggleSkill = (skill) => {
-
-    const currentSkills =
-      filters.skills || [];
-
-    if (currentSkills.includes(skill)) {
+    if (filters.skills.includes(skill)) {
 
       setFilters({
         ...filters,
-        skills: currentSkills.filter(
-          (s) => s !== skill
+        skills: filters.skills.filter(
+          (item) => item !== skill
         ),
       });
 
@@ -99,185 +44,152 @@ function Filters({
 
       setFilters({
         ...filters,
-        skills: [...currentSkills, skill],
+        skills: [...filters.skills, skill],
       });
 
     }
+
+  };
+
+  const clearFilters = () => {
+
+    setFilters({
+      title: "",
+      location: "",
+      experience: "",
+      type: "",
+      skills: [],
+    });
+
   };
 
   return (
-    <section className="bg-white p-5 md:p-8 rounded-3xl shadow-xl sticky top-6 overflow-hidden w-full max-w-full">
 
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">
+    <div className="bg-white p-6 rounded-3xl shadow-xl">
+
+      {/* Heading */}
+      <h2 className="text-xl font-bold text-gray-800 mb-5">
+
         Filters
+
       </h2>
 
-      <div className="space-y-6">
+      <div className="space-y-5">
 
         {/* Job Title */}
-        <div className="relative">
+        <div>
 
-          <label className="block mb-2 font-semibold text-gray-700">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+
             Job Title
+
           </label>
 
           <input
             type="text"
-            value={filters.title || ""}
-            placeholder="Search job title"
-            onFocus={() => setTitleOpen(true)}
-            onChange={(e) => {
-
+            list="jobTitles"
+            value={filters.title}
+            onChange={(e) =>
               setFilters({
                 ...filters,
                 title: e.target.value,
-              });
-
-              setTitleOpen(true);
-
-            }}
-            onBlur={() =>
-              setTimeout(() => {
-                setTitleOpen(false);
-              }, 150)
+              })
             }
-            className="w-full min-w-0 border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
+            placeholder="Frontend Developer"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-400"
           />
 
-          {titleOpen &&
-            filteredTitles.length > 0 && (
+          <datalist id="jobTitles">
 
-            <div className="absolute top-24 left-0 w-full bg-white shadow-lg rounded-2xl p-2 z-20 max-h-52 overflow-y-auto border">
+            {jobTitles.map((job, index) => (
 
-              {filteredTitles.map((title, index) => (
+              <option
+                key={index}
+                value={job}
+              />
 
-                <div
-                  key={index}
-                  onMouseDown={() => {
+            ))}
 
-                    setFilters({
-                      ...filters,
-                      title: title,
-                    });
-
-                    setTitleOpen(false);
-
-                  }}
-                  className="p-3 rounded-xl hover:bg-blue-100 cursor-pointer"
-                >
-                  {title}
-                </div>
-
-              ))}
-
-            </div>
-
-          )}
+          </datalist>
 
         </div>
 
         {/* Location */}
-        <div className="relative">
+        <div>
 
-          <label className="block mb-2 font-semibold text-gray-700">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+
             Location
+
           </label>
 
           <input
             type="text"
-            value={filters.location || ""}
-            placeholder="Search location"
-            onFocus={() => setLocationOpen(true)}
-            onChange={(e) => {
-
+            list="locations"
+            value={filters.location}
+            onChange={(e) =>
               setFilters({
                 ...filters,
                 location: e.target.value,
-              });
-
-              setLocationOpen(true);
-
-            }}
-            onBlur={() =>
-              setTimeout(() => {
-                setLocationOpen(false);
-              }, 150)
+              })
             }
-            className="w-full min-w-0 border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
+            placeholder="Hyderabad"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-400"
           />
 
-          {locationOpen &&
-            filteredLocations.length > 0 && (
+          <datalist id="locations">
 
-            <div className="absolute top-24 left-0 w-full bg-white shadow-lg rounded-2xl p-2 z-20 max-h-52 overflow-y-auto border">
+            {locationsList.map((location, index) => (
 
-              {filteredLocations.map((location, index) => (
+              <option
+                key={index}
+                value={location}
+              />
 
-                <div
-                  key={index}
-                  onMouseDown={() => {
+            ))}
 
-                    setFilters({
-                      ...filters,
-                      location: location,
-                    });
-
-                    setLocationOpen(false);
-
-                  }}
-                  className="p-3 rounded-xl hover:bg-green-100 cursor-pointer"
-                >
-                  {location}
-                </div>
-
-              ))}
-
-            </div>
-
-          )}
+          </datalist>
 
         </div>
 
         {/* Experience */}
         <div>
 
-          <label className="block mb-2 font-semibold text-gray-700">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+
             Experience
+
           </label>
 
           <select
-            value={filters.experience || ""}
+            value={filters.experience}
             onChange={(e) =>
               setFilters({
                 ...filters,
                 experience: e.target.value,
               })
             }
-            className="w-full min-w-0 border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-400"
           >
 
             <option value="">
-              Experience
+              Select Experience
             </option>
 
-            <option>
+            <option value="Fresher">
               Fresher
             </option>
 
-            <option>
+            <option value="1 Year">
               1 Year
             </option>
 
-            <option>
+            <option value="2 Years">
               2 Years
             </option>
 
-            <option>
+            <option value="3 Years">
               3 Years
-            </option>
-
-            <option>
-              4+ Years
             </option>
 
           </select>
@@ -287,38 +199,36 @@ function Filters({
         {/* Job Type */}
         <div>
 
-          <label className="block mb-2 font-semibold text-gray-700">
-            Internship / Job
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+
+            Job Type
+
           </label>
 
           <select
-            value={filters.type || ""}
+            value={filters.type}
             onChange={(e) =>
               setFilters({
                 ...filters,
                 type: e.target.value,
               })
             }
-            className="w-full min-w-0 border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-400"
           >
 
             <option value="">
-              Select Type
+              Select Job Type
             </option>
 
-            <option>
-              Internship
-            </option>
-
-            <option>
+            <option value="Full Time Job">
               Full Time Job
             </option>
 
-            <option>
-              Part Time Job
+            <option value="Internship">
+              Internship
             </option>
 
-            <option>
+            <option value="Remote Job">
               Remote Job
             </option>
 
@@ -329,86 +239,66 @@ function Filters({
         {/* Skills */}
         <div>
 
-          <h3 className="text-xl font-semibold mb-5 text-gray-800">
-            Select Multiple Skills
-          </h3>
+          <label className="block text-sm font-semibold text-gray-700 mb-3">
 
-          <div className="flex flex-wrap gap-3 w-full">
+            Skills
 
-            {skills.map((skill, index) => {
+          </label>
 
-              const active =
-                (filters.skills || [])
-                  .includes(skill);
+          <div className="flex flex-wrap gap-2">
 
-              return (
+            {skillsList.map((skill, index) => (
 
-                <button
-                  type="button"
-                  key={index}
-                  onClick={() => toggleSkill(skill)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                    active
-                      ? "bg-purple-600 text-white"
-                      : "bg-gray-100 hover:bg-purple-600 hover:text-white"
-                  }`}
-                >
-                  {skill}
-                </button>
+              <button
+                type="button"
+                key={index}
+                onClick={() => handleSkillChange(skill)}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+                  filters.skills.includes(skill)
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
 
-              );
-            })}
+                {skill}
+
+              </button>
+
+            ))}
 
           </div>
 
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3">
+        {/* Buttons */}
+        <div className="flex flex-col gap-3 pt-2">
 
-          {/* Clear Filters */}
           <button
-            onClick={() => {
-
-              setFilters({
-                title: "",
-                location: "",
-                experience: "",
-                type: "",
-                skills: [],
-              });
-
-              toast.success(
-                "Filters Cleared"
-              );
-
-            }}
-            className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-2xl font-semibold transition"
+            type="button"
+            onClick={applyFilters}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-sm font-semibold transition"
           >
-            Clear Filters
+
+            Apply Filters
+
           </button>
 
-          {/* Apply Button */}
           <button
-            onClick={() => {
-
-              applyFilters();
-
-              toast.success(
-                "Filters Applied"
-              );
-
-            }}
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-semibold transition"
+            type="button"
+            onClick={clearFilters}
+            className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl text-sm font-semibold transition"
           >
-            Apply Filters
+
+            Clear Filters
+
           </button>
 
         </div>
 
       </div>
 
-    </section>
+    </div>
+
   );
 }
 

@@ -42,7 +42,7 @@ function Home() {
       salary: "₹8 LPA",
       experience: "1 Year",
       type: "Full Time Job",
-      skills: ["React", "Node.js", "MongoDB"],
+      skills: ["React", "Node.js"],
     },
 
     {
@@ -54,7 +54,7 @@ function Home() {
       salary: "₹7 LPA",
       experience: "Fresher",
       type: "Internship",
-      skills: ["UI/UX", "Figma", "Design"],
+      skills: ["Figma", "UI Design"],
     },
 
     {
@@ -66,7 +66,7 @@ function Home() {
       salary: "₹6 LPA",
       experience: "2 Years",
       type: "Full Time Job",
-      skills: ["Python", "SQL", "Django"],
+      skills: ["Python", "SQL"],
     },
 
     {
@@ -78,7 +78,7 @@ function Home() {
       salary: "₹9 LPA",
       experience: "3 Years",
       type: "Remote Job",
-      skills: ["AWS", "Docker", "Kubernetes"],
+      skills: ["AWS", "Docker"],
     },
 
     {
@@ -90,7 +90,7 @@ function Home() {
       salary: "₹5 LPA",
       experience: "Fresher",
       type: "Internship",
-      skills: ["Power BI", "SQL", "Excel"],
+      skills: ["Power BI", "Excel"],
     },
 
   ];
@@ -104,20 +104,6 @@ function Home() {
   });
 
   const [filteredJobs, setFilteredJobs] = useState(jobsData);
-
-  const [savedJobs, setSavedJobs] = useState([]);
-
-  const handleSaveJob = (job) => {
-
-    const alreadySaved = savedJobs.find(
-      (item) => item.id === job.id
-    );
-
-    if (alreadySaved) return;
-
-    setSavedJobs([...savedJobs, job]);
-
-  };
 
   const applyFilters = () => {
 
@@ -143,18 +129,11 @@ function Home() {
         filters.type === "" ||
         job.type === filters.type;
 
-      const skillsMatch =
-        filters.skills.length === 0 ||
-        filters.skills.every((skill) =>
-          job.skills.includes(skill)
-        );
-
       return (
         titleMatch &&
         locationMatch &&
         experienceMatch &&
-        typeMatch &&
-        skillsMatch
+        typeMatch
       );
 
     });
@@ -171,13 +150,13 @@ function Home() {
 
       <div className="px-6 md:px-12 py-8">
 
-        {/* HOME SECTION */}
+        {/* HOME */}
         {activeSection === "home" && (
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="h-[85vh] bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-3xl p-10 text-white shadow-2xl overflow-hidden relative flex items-center"
+            className="h-[85vh] bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-3xl p-10 text-white shadow-2xl flex items-center"
           >
 
             <div className="grid lg:grid-cols-2 gap-10 items-center w-full">
@@ -220,7 +199,9 @@ function Home() {
                 <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-10 rounded-3xl shadow-2xl w-full max-w-lg">
 
                   <h2 className="text-4xl font-bold mb-10">
-                    🔥 Trending Skills
+
+                    Trending Skills
+
                   </h2>
 
                   <div className="flex flex-wrap gap-5">
@@ -232,14 +213,15 @@ function Home() {
                       "AWS",
                       "UI/UX",
                       "Java",
-                      "Cloud",
                     ].map((skill, index) => (
 
                       <span
                         key={index}
                         className="bg-white/20 px-5 py-4 rounded-2xl"
                       >
+
                         {skill}
+
                       </span>
 
                     ))}
@@ -256,33 +238,34 @@ function Home() {
 
         )}
 
-        {/* JOBS SECTION */}
+        {/* JOBS */}
         {activeSection === "jobs" && (
 
-          <div className="grid lg:grid-cols-4 gap-8">
+          <div className="bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 rounded-3xl p-6 md:p-8 shadow-xl">
 
-            {/* Filters */}
-            <div className="lg:col-span-1">
+            <div className="grid lg:grid-cols-4 gap-8">
 
-              <div className="sticky top-24 max-h-[90vh] overflow-y-auto pr-2">
+              {/* Filters */}
+              <div className="lg:col-span-1">
 
-                <Filters
-                  filters={filters}
-                  setFilters={setFilters}
-                  applyFilters={applyFilters}
-                />
+                <div className="sticky top-24 max-h-[90vh] overflow-y-auto pr-2">
+
+                  <Filters
+                    filters={filters}
+                    setFilters={setFilters}
+                    applyFilters={applyFilters}
+                  />
+
+                </div>
 
               </div>
 
-            </div>
+              {/* Jobs */}
+              <div className="lg:col-span-3 mt-10 lg:mt-0">
 
-            {/* Jobs */}
-            <div className="lg:col-span-3 mt-10 lg:mt-0">
+                <RecommendedJobs jobs={filteredJobs} />
 
-              <RecommendedJobs
-                jobs={filteredJobs}
-                onSaveJob={handleSaveJob}
-              />
+              </div>
 
             </div>
 
@@ -290,21 +273,25 @@ function Home() {
 
         )}
 
-        {/* COMPANIES SECTION */}
+        {/* COMPANIES */}
         {activeSection === "companies" && (
 
-          <Companies />
+          <div className="bg-gradient-to-r from-cyan-100 via-blue-100 to-indigo-100 rounded-3xl p-6 md:p-8 shadow-xl">
+
+            <Companies />
+
+          </div>
 
         )}
 
-        {/* ABOUT SECTION */}
+        {/* ABOUT */}
         {activeSection === "about" && (
 
           <motion.section
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="min-h-[85vh] flex items-center"
+            className="min-h-[85vh] flex items-center bg-gradient-to-br from-white to-blue-50 rounded-3xl p-6 md:p-10 shadow-xl"
           >
 
             <div className="w-full text-center">
@@ -319,18 +306,35 @@ function Home() {
 
               <p className="text-xl text-gray-500 max-w-4xl mx-auto leading-10 mb-14">
 
-                HireHub is a modern AI-powered job portal
-                helping students and professionals discover
-                internships and jobs from top companies.
+                HireHub is a modern AI-powered job portal helping students and professionals discover internships and jobs from top companies.
 
               </p>
 
+              {/* Cards */}
               <div className="grid md:grid-cols-3 gap-8">
 
                 {[
-                  "AI Recommendations",
-                  "Verified Companies",
-                  "Career Growth",
+                  {
+                    title: "AI Recommendations",
+                    icon: "✦",
+                    description:
+                      "Smart AI-powered job suggestions based on your skills and interests.",
+                  },
+
+                  {
+                    title: "Verified Companies",
+                    icon: "◉",
+                    description:
+                      "Explore trusted companies with verified job opportunities and profiles.",
+                  },
+
+                  {
+                    title: "Career Growth",
+                    icon: "⬈",
+                    description:
+                      "Build your professional journey with internships, jobs, and learning paths.",
+                  },
+
                 ].map((item, index) => (
 
                   <motion.div
@@ -339,18 +343,21 @@ function Home() {
                     className="bg-white p-10 rounded-3xl shadow-xl"
                   >
 
-                    <div className="text-6xl mb-6">
-                      🚀
+                    <div className="text-6xl mb-6 text-blue-600">
+
+                      {item.icon}
+
                     </div>
 
                     <h2 className="text-3xl font-bold text-gray-800 mb-5">
-                      {item}
+
+                      {item.title}
+
                     </h2>
 
                     <p className="text-gray-500 leading-8">
 
-                      Modern tools and smart features
-                      to improve your professional career.
+                      {item.description}
 
                     </p>
 
@@ -366,10 +373,10 @@ function Home() {
 
         )}
 
-        {/* CONTACT SECTION */}
+        {/* CONTACT */}
         {activeSection === "contact" && (
 
-          <div className="min-h-[70vh] flex items-center justify-center">
+          <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 rounded-3xl p-6 md:p-10 shadow-xl">
 
             <div className="bg-white p-10 rounded-3xl shadow-2xl max-w-2xl w-full">
 
@@ -399,9 +406,7 @@ function Home() {
                   className="w-full border p-4 rounded-2xl"
                 ></textarea>
 
-                <button
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-bold transition"
-                >
+                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-bold transition">
 
                   Send Message
 
