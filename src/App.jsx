@@ -1,79 +1,57 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import { useState } from "react";
+
+import Navbar from "./components/Navbar";
+
 import Home from "./pages/Home";
+
 import Dashboard from "./pages/Dashboard";
-import SavedJobs from "./pages/SavedJobs";
-import Notifications from "./pages/Notifications";
-import Resume from "./pages/Resume";
-import Applications from "./pages/Applications";
-import Settings from "./pages/Settings";
 
 function App() {
 
+  const [activeSection, setActiveSection] = useState("home");
+
   return (
+
     <BrowserRouter>
 
-      <Routes>
+      <div className="min-h-screen bg-gray-50">
 
-        {/* Login Page */}
-        <Route
-          path="/"
-          element={<Login />}
-        />
+        {/* Global Navbar */}
+        <Navbar setActiveSection={setActiveSection} />
 
-        {/* Register Page */}
-        <Route
-          path="/register"
-          element={<Register />}
-        />
+        <Routes>
 
-        {/* Home Page */}
-        <Route
-          path="/home"
-          element={<Home />}
-        />
+          {/* Redirect */}
+          <Route
+            path="/"
+            element={<Navigate to="/home" />}
+          />
 
-        {/* Dashboard */}
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
+          {/* Home */}
+          <Route
+            path="/home"
+            element={
+              <Home
+                activeSection={activeSection}
+                setActiveSection={setActiveSection}
+              />
+            }
+          />
 
-        {/* Saved Jobs */}
-        <Route
-          path="/saved-jobs"
-          element={<SavedJobs />}
-        />
+          {/* Dashboard */}
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
 
-        {/* Notifications */}
-        <Route
-          path="/notifications"
-          element={<Notifications />}
-        />
+        </Routes>
 
-        {/* Resume */}
-        <Route
-          path="/resume"
-          element={<Resume />}
-        />
-
-        {/* Applications */}
-        <Route
-          path="/applications"
-          element={<Applications />}
-        />
-
-        {/* Settings */}
-        <Route
-          path="/settings"
-          element={<Settings />}
-        />
-
-      </Routes>
+      </div>
 
     </BrowserRouter>
+
   );
 }
 
