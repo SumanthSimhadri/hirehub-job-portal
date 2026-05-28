@@ -81,11 +81,11 @@ function JobCard({
           </p>
 
           <p className="text-green-600 font-semibold">
-            💰 {salary}
+            💰 Salary : {salary}
           </p>
 
           <p className="text-gray-600">
-            🧠 {experience}
+            🧠 Minimum Experience: {experience}
           </p>
 
           <p className="text-gray-600">
