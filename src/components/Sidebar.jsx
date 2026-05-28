@@ -1,12 +1,8 @@
-import { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 
 function Sidebar() {
 
   const navigate = useNavigate();
-
-  const [darkMode, setDarkMode] = useState(false);
 
   const handleLogout = () => {
     navigate("/");
@@ -14,11 +10,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`h-screen shadow-xl p-5 md:p-6 flex flex-col justify-between transition duration-500 ${
-        darkMode
-          ? "bg-gray-900 text-white"
-          : "bg-white text-black"
-      }`}
+      className="h-screen shadow-xl p-5 md:p-6 flex flex-col justify-between bg-white text-black"
     >
 
       {/* Top */}
@@ -26,11 +18,7 @@ function Sidebar() {
 
         {/* Logo */}
         <h1
-          className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-12 ${
-            darkMode
-              ? "text-blue-400"
-              : "text-blue-600"
-          }`}
+          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-blue-600"
         >
           HireHub
         </h1>
@@ -73,17 +61,6 @@ function Sidebar() {
               ⚙️ Settings
             </button>
           </Link>
-
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-gray-100 transition"
-          >
-
-            {darkMode
-              ? "☀️ Light Mode"
-              : "🌙 Dark Mode"}
-
-          </button>
 
         </div>
 
