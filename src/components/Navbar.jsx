@@ -176,24 +176,29 @@ function Navbar({ setActiveSection }) {
 
           </button>
 
-          <Link to="/dashboard">
+          {/* Profile + Logout */}
+          <div className="space-y-3 pt-2">
 
-            <button className="w-full bg-gray-100 hover:bg-gray-200 py-2.5 rounded-xl text-[13px] font-medium transition">
+            <Link to="/dashboard">
 
-              Profile
+              <button className="w-full bg-gray-100 hover:bg-gray-200 py-2.5 rounded-xl text-[13px] font-medium transition">
+
+                Profile
+
+              </button>
+
+            </Link>
+
+            <button
+              onClick={handleLogout}
+              className="w-full bg-red-100 hover:bg-red-200 text-red-600 py-2.5 rounded-xl text-[13px] font-medium transition"
+            >
+
+              Logout
 
             </button>
 
-          </Link>
-
-          <button
-            onClick={handleLogout}
-            className="w-full bg-red-100 hover:bg-red-200 text-red-600 py-2.5 rounded-xl text-[13px] font-medium transition"
-          >
-
-            Logout
-
-          </button>
+          </div>
 
         </div>
 

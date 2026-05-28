@@ -106,9 +106,9 @@ function Filters({
   };
 
   return (
-    <section className="bg-white p-8 rounded-3xl shadow-xl sticky top-6">
+    <section className="bg-white p-5 md:p-8 rounded-3xl shadow-xl sticky top-6 overflow-hidden w-full max-w-full">
 
-      <h2 className="text-3xl font-bold mb-8 text-gray-800">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">
         Filters
       </h2>
 
@@ -141,7 +141,7 @@ function Filters({
                 setTitleOpen(false);
               }, 150)
             }
-            className="w-full border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full min-w-0 border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
           />
 
           {titleOpen &&
@@ -203,7 +203,7 @@ function Filters({
                 setLocationOpen(false);
               }, 150)
             }
-            className="w-full border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full min-w-0 border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
           />
 
           {locationOpen &&
@@ -253,7 +253,7 @@ function Filters({
                 experience: e.target.value,
               })
             }
-            className="w-full border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full min-w-0 border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
           >
 
             <option value="">
@@ -299,7 +299,7 @@ function Filters({
                 type: e.target.value,
               })
             }
-            className="w-full border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full min-w-0 border p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
           >
 
             <option value="">
@@ -333,7 +333,7 @@ function Filters({
             Select Multiple Skills
           </h3>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 w-full">
 
             {skills.map((skill, index) => {
 
@@ -364,7 +364,7 @@ function Filters({
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
 
           {/* Clear Filters */}
           <button
