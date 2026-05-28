@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 import SavedJobs from "./pages/SavedJobs";
 import Notifications from "./pages/Notifications";
 import Resume from "./pages/Resume";
@@ -17,46 +17,55 @@ function App() {
 
       <Routes>
 
+        {/* Login Page */}
         <Route
           path="/"
-          element={<Home />}
-        />
-
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
-
-        <Route
-          path="/login"
           element={<Login />}
         />
 
+        {/* Register Page */}
         <Route
           path="/register"
           element={<Register />}
         />
 
+        {/* Home Page */}
+        <Route
+          path="/home"
+          element={<Home />}
+        />
+
+        {/* Dashboard */}
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
+
+        {/* Saved Jobs */}
         <Route
           path="/saved-jobs"
           element={<SavedJobs />}
         />
 
+        {/* Notifications */}
         <Route
           path="/notifications"
           element={<Notifications />}
         />
 
+        {/* Resume */}
         <Route
           path="/resume"
           element={<Resume />}
         />
 
+        {/* Applications */}
         <Route
           path="/applications"
           element={<Applications />}
         />
 
+        {/* Settings */}
         <Route
           path="/settings"
           element={<Settings />}
