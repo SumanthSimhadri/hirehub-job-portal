@@ -27,9 +27,11 @@ function AppContent() {
     <div className="min-h-screen bg-gray-50">
 
       {/* Hide Navbar on Login Page */}
-      {location.pathname !== "/" && (
-        <Navbar setActiveSection={setActiveSection} />
-      )}
+      {location.pathname !== "/" &&
+ location.pathname !== "/register" && (
+  <Navbar setActiveSection={setActiveSection} />
+)}
+    
 
       <Routes>
 
@@ -44,9 +46,9 @@ function AppContent() {
 />
         
            <Route
-            path="/register"
-             element={<Register />}
-            />
+  path="/register"
+  element={<Register />}
+/>
         {/* Home */}
         <Route
   path="/home"
