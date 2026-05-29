@@ -5,6 +5,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 
@@ -36,7 +37,10 @@ function AppContent() {
           path="/"
           element={<Login />}
         />
-
+           <Route
+            path="/register"
+             element={<Register />}
+            />
         {/* Home */}
         <Route
           path="/home"
