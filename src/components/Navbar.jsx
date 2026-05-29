@@ -9,6 +9,13 @@ function Navbar({ setActiveSection }) {
   const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+
+  const [showLanguage, setShowLanguage] = useState(false);
+
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+   const [showTerms, setShowTerms] = useState(false);
 
   const handleLogout = () => {
     navigate("/");
@@ -25,6 +32,7 @@ function Navbar({ setActiveSection }) {
   };
 
   return (
+      <>
 
     <nav className="bg-white shadow-md px-4 md:px-8 lg:px-12 py-4 sticky top-0 z-50">
 
@@ -84,40 +92,79 @@ function Navbar({ setActiveSection }) {
 
         </div>
 
-        {/* Desktop Profile */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 relative">
 
-          <Link to="/dashboard">
+  <button
+    onClick={() => setShowProfileMenu(!showProfileMenu)}
+    className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-2xl text-[14px] font-semibold transition flex items-center gap-3 shadow-sm"
+  >
 
-            <button className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-2xl text-[14px] font-semibold transition flex items-center gap-3 shadow-sm">
+    <div className="w-9 h-9 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-center text-sm font-bold">
 
-              <div className="w-9 h-9 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-center text-sm font-bold shadow-md">
+      SJ
 
-                SJ
+    </div>
 
-              </div>
+    <div className="flex flex-col items-start leading-tight">
 
-              <div className="flex flex-col items-start leading-tight">
+      <span className="text-sm font-semibold text-gray-800">
+        Sumanth
+      </span>
 
-                <span className="text-sm font-semibold text-gray-800">
+      <span className="text-[11px] text-gray-500">
+        sumanth@gmail.com
+      </span>
 
-                  Sumanth
+    </div>
 
-                </span>
+  </button>
 
-                <span className="text-[11px] text-gray-500">
+  {showProfileMenu && (
 
-                  sumanth@gmail.com
+    <div className="absolute right-0 top-16 w-72 bg-white rounded-2xl shadow-xl border p-3 z-50">
 
-                </span>
+      <Link to="/dashboard">
+        <button className="w-full text-left p-3 hover:bg-gray-100 rounded-xl">
+          Open Dashboard
+        </button>
+      </Link>
 
-              </div>
+      
 
-            </button>
+      <button
+        onClick={() => setShowLanguage(true)}
+        className="w-full text-left p-3 hover:bg-gray-100 rounded-xl"
+      >
+        Language Preferences
+      </button>
 
-          </Link>
+      <button
+        onClick={() => setShowPrivacy(true)}
+        className="w-full text-left p-3 hover:bg-gray-100 rounded-xl"
+      >
+        Privacy & Security
+      </button>
+
+      <button
+        onClick={() => setShowTerms(true)}
+        className="w-full text-left p-3 hover:bg-gray-100 rounded-xl"
+      >
+        Terms & Policies
+      </button>
+
+      <button
+        onClick={handleLogout}
+        className="w-full text-left p-3 text-red-600 hover:bg-red-50 rounded-xl"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  )}
 
         </div>
+
 
         {/* Mobile Menu Button */}
         <button
@@ -231,9 +278,116 @@ function Navbar({ setActiveSection }) {
 
       )}
 
-    </nav>
+    
+</nav>
+
+{showLanguage && (
+  <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div className="bg-white w-[90%] max-w-md rounded-3xl p-6 shadow-2xl">
+      <div className="flex justify-between items-center mb-5">
+        <h2 className="text-2xl font-bold text-gray-800">
+          Language Preferences
+        </h2>
+
+        <button
+          onClick={() => setShowLanguage(false)}
+          className="text-xl"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div className="space-y-4">
+        <div className="bg-blue-50 p-4 rounded-2xl">
+          ✓ English (Current)
+        </div>
+
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          Telugu
+        </div>
+
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          Hindi
+        </div>
+
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          Tamil
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+{showPrivacy && (
+  <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div className="bg-white w-[90%] max-w-md rounded-3xl p-6 shadow-2xl">
+      <div className="flex justify-between items-center mb-5">
+        <h2 className="text-2xl font-bold text-gray-800">
+          Privacy & Security
+        </h2>
+
+        <button
+          onClick={() => setShowPrivacy(false)}
+          className="text-xl"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div className="space-y-4">
+        <div className="bg-green-50 p-4 rounded-2xl">
+          ✓ Two-Factor Authentication Enabled
+        </div>
+
+        <div className="bg-green-50 p-4 rounded-2xl">
+          ✓ Email Verified
+        </div>
+
+        <div className="bg-green-50 p-4 rounded-2xl">
+          ✓ Secure Login Active
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+{showTerms && (
+  <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div className="bg-white w-[90%] max-w-md rounded-3xl p-6 shadow-2xl">
+      <div className="flex justify-between items-center mb-5">
+        <h2 className="text-2xl font-bold text-gray-800">
+          Terms & Policies
+        </h2>
+
+        <button
+          onClick={() => setShowTerms(false)}
+          className="text-xl"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div className="space-y-4">
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          User data is securely protected
+        </div>
+
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          Jobs are verified before publishing
+        </div>
+
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          Community guidelines must be followed
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+  </>
 
   );
+
 }
 
 export default Navbar;

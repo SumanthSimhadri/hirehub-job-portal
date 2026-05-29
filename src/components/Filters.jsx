@@ -1,4 +1,9 @@
-function Filters({ filters, setFilters, applyFilters }) {
+function Filters({
+  filters,
+  setFilters,
+  applyFilters,
+  resetJobs,
+}) {
 
   const skillsList = [
     "React",
@@ -53,17 +58,20 @@ function Filters({ filters, setFilters, applyFilters }) {
 
   const clearFilters = () => {
 
-     setFilters({
-     title: "",
-      location: "",
-      experience: "",
-      type: "",
-     salary: 20,
+  const clearedFilters = {
+    title: "",
+    location: "",
+    experience: "",
+    type: "",
+    salary: 20,
     skills: [],
-   }); 
-
   };
 
+  setFilters(clearedFilters);
+
+  resetJobs();
+
+};
   return (
 
     <div className="bg-white p-6 rounded-3xl shadow-xl">

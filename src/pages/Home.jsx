@@ -238,10 +238,11 @@ function Home({ activeSection, setActiveSection }) {
                 <div className="sticky top-24 max-h-[90vh] overflow-y-auto pr-2">
 
                   <Filters
-                    filters={filters}
-                    setFilters={setFilters}
-                    applyFilters={applyFilters}
-                  />
+                  filters={filters}
+                   setFilters={setFilters}
+                  applyFilters={applyFilters}
+                  resetJobs={() => setFilteredJobs(jobsData)}
+/>
 
                 </div>
 
@@ -266,9 +267,9 @@ function Home({ activeSection, setActiveSection }) {
              </div>
 
               <RecommendedJobs
-              jobs={filteredJobs}
-  />
-
+              jobs={filteredJobs.length > 0 ? filteredJobs : jobsData}
+/>
+                 
              </div>
 
             </div>

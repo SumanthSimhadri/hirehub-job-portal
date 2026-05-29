@@ -32,8 +32,7 @@ function Sidebar() {
               : "text-blue-600"
           }`}
         >
-
-          HireHub
+             Careers
 
         </h1>
 
