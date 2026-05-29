@@ -248,11 +248,27 @@ function Home({ activeSection, setActiveSection }) {
 
               <div className="lg:col-span-3 mt-10 lg:mt-0">
 
-                <RecommendedJobs
-                  jobs={filteredJobs}
-                />
+              <div className="mb-8">
 
-              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-3">
+
+               Recommended for You
+
+               </h1>
+
+               <p className="text-gray-500 text-lg">
+
+                Matched jobs based on your selected filters
+
+              </p>
+
+             </div>
+
+              <RecommendedJobs
+              jobs={filteredJobs}
+  />
+
+             </div>
 
             </div>
 
