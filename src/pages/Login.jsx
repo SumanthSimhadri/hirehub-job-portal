@@ -1,15 +1,30 @@
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-function Login() {
+function Login({ setIsLoggedIn }) {
 
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleLogin = () => {
 
+  if (
+    email === "hirehub@gmail.com" &&
+    password === "HireHub123"
+  ) {
+
+    setIsLoggedIn(true);
     navigate("/home");
 
-  };
+  } else {
 
+    alert("Invalid Email or Password");
+
+  }
+
+};
   return (
     <div className="min-h-screen bg-white flex flex-col">
 
@@ -69,18 +84,22 @@ function Login() {
           >
 
             {/* Email */}
+           <input
+  type="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  placeholder="Email"
+  className="w-full border border-gray-300 rounded-full px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+/>
+          
+             {/* Password */}
             <input
-              type="email"
-              placeholder="Email address"
-              className="w-full border border-gray-300 p-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-            {/* Password */}
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full border border-gray-300 p-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+  type="password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  placeholder="Password"
+  className="w-full border border-gray-300 rounded-full px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+/>
 
             {/* Login Button */}
             <button
@@ -91,7 +110,17 @@ function Login() {
               Sign In
 
             </button>
+<div className="mt-4 p-3 bg-blue-50 rounded-xl text-sm text-gray-700">
 
+  <p className="font-semibold">
+    Demo Credentials
+  </p>
+
+  <p>Email: hirehub@gmail.com</p>
+
+  <p>Password: HireHub123</p>
+
+</div>
             {/* Google Button */}
             <button
               type="button"

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 
 import { useState } from "react";
 
@@ -18,6 +18,7 @@ import Resume from "./pages/Resume";
 function AppContent() {
 
   const [activeSection, setActiveSection] = useState("home");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const location = useLocation();
 
@@ -33,25 +34,33 @@ function AppContent() {
       <Routes>
 
         {/* Login Page */}
-        <Route
-          path="/"
-          element={<Login />}
-        />
+       <Route
+  path="/"
+  element={
+    <Login
+      setIsLoggedIn={setIsLoggedIn}
+    />
+  }
+/>
+        
            <Route
             path="/register"
              element={<Register />}
             />
         {/* Home */}
         <Route
-          path="/home"
-          element={
-            <Home
-              activeSection={activeSection}
-              setActiveSection={setActiveSection}
-            />
-          }
-        />
-
+  path="/home"
+  element={
+    isLoggedIn ? (
+      <Home
+  activeSection={activeSection}
+  setActiveSection={setActiveSection}
+/>
+    ) : (
+      <Navigate to="/" />
+    )
+  }
+/>
         {/* Dashboard */}
         <Route
           path="/dashboard"
