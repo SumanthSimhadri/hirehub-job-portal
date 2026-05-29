@@ -92,12 +92,13 @@ function Home({ activeSection, setActiveSection }) {
 
 ];
   const [filters, setFilters] = useState({
-    title: "",
-    location: "",
-    experience: "",
-    type: "",
-    skills: [],
-  });
+  title: "",
+  location: "",
+  experience: "",
+  type: "",
+  salary: 20,
+  skills: [],
+});
 
   const [filteredJobs, setFilteredJobs] = useState(jobsData);
 

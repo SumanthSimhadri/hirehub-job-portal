@@ -53,13 +53,14 @@ function Filters({ filters, setFilters, applyFilters }) {
 
   const clearFilters = () => {
 
-    setFilters({
-      title: "",
+     setFilters({
+     title: "",
       location: "",
       experience: "",
       type: "",
-      skills: [],
-    });
+     salary: 20,
+    skills: [],
+   }); 
 
   };
 
@@ -236,39 +237,83 @@ function Filters({ filters, setFilters, applyFilters }) {
 
         </div>
 
-        {/* Skills */}
-        <div>
+        {/* Salary Range */}
+<div>
 
-          <label className="block text-sm font-semibold text-gray-700 mb-3">
+  <label className="block text-sm font-semibold text-gray-700 mb-2">
 
-            Skills
+    Salary Range
 
-          </label>
+  </label>
 
-          <div className="flex flex-wrap gap-2">
+  <input
+    type="range"
+    min="0"
+    max="20"
+    step="1"
+    value={filters.salary || 20}
+    onChange={(e) =>
+      setFilters({
+        ...filters,
+        salary: Number(e.target.value),
+      })
+    }
+    className="w-full cursor-pointer"
+  />
 
-            {skillsList.map((skill, index) => (
+  <div className="flex justify-between text-xs text-gray-500 mt-2">
 
-              <button
-                type="button"
-                key={index}
-                onClick={() => handleSkillChange(skill)}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
-                  filters.skills.includes(skill)
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
+    <span>0 LPA</span>
 
-                {skill}
+    <span className="font-semibold text-blue-600">
 
-              </button>
+      {filters.salary === 20
+        ? "Any Salary"
+        : `Up to ₹${filters.salary} LPA`}
 
-            ))}
+    </span>
 
-          </div>
+    <span>20+ LPA</span>
 
-        </div>
+  </div>
+
+</div>
+
+{/* Skills */}
+<div>
+
+  <label className="block text-sm font-semibold text-gray-700 mb-3">
+
+    Skills
+
+  </label>
+
+  <div className="flex flex-wrap gap-2">
+
+    {skillsList.map((skill, index) => (
+
+      <button
+        type="button"
+        key={index}
+        onClick={() => handleSkillChange(skill)}
+        className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+          filters.skills.includes(skill)
+            ? "bg-blue-600 text-white"
+            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+        }`}
+      >
+
+        {skill}
+
+      </button>
+
+    ))}
+
+  </div>
+
+</div>
+
+      
 
         {/* Buttons */}
         <div className="flex flex-col gap-3 pt-2">
